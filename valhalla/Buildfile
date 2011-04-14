@@ -1,0 +1,9 @@
+# ===========================================================================
+# Project:   Valhalla
+# Copyright: ©2011 My Company, Inc.
+# ===========================================================================
+
+# Add initial buildfile information here
+config :all, :required => [:sproutcore, 'sproutcore/table']
+
+proxy "/deeds", :to => "localhost:3000"
