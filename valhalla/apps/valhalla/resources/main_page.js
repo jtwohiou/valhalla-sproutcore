@@ -16,9 +16,21 @@ Valhalla.mainPage = SC.Page.design({
     
     topView: SC.ToolbarView.design({
       layout: { top: 0, left: 0, right: 0, height: 36 },
-      childViews: 'labelView'.w(),
+      childViews: 'labelView searchView buttonView'.w(),
       anchorLocation: SC.ANCHOR_TOP,
       
+      searchView: SC.TextFieldView.design({
+        layout: { width: 200, height: 22, right: 150, centerY: 0 },
+     }),
+	
+
+	buttonView: SC.ButtonView.design({
+		layout: { centerY: 0, height: 24, right: 12, width: 100 },
+        	title:  "Search",
+		target: "Valhalla.deedsController",
+		action: "searchDeed"	
+	}),
+
       labelView: SC.LabelView.design({
         layout: { centerY: 0, height: 24, left: 8, width: 200 },
         controlSize: SC.LARGE_CONTROL_SIZE,
@@ -35,21 +47,26 @@ Valhalla.mainPage = SC.Page.design({
       
       columns: [
 	  SC.TableColumn.create({
+	    key: 'id',
+	    label: 'id',
+	    width: 50
+	}),
+	  SC.TableColumn.create({
 	    key:   'performed_at',
 	    label: 'Date',
-	    width: 100
+	    width: 150
 	  }),
 
 	  SC.TableColumn.create({
 	    key:   'speaker',
 	    label: 'Speaker',
-	    width: 100,
-	    minWidth: 100
+	    width: 150,
+	    minWidth: 150
 	  }),
 	  SC.TableColumn.create({
 	    key:   'text',
 	    label: 'Deed',
-	    width: 300,
+	    width: 600,
 	    minWidth: 150
 	  })
 	],

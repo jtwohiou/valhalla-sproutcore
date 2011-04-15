@@ -25,5 +25,16 @@ sortStateDidChange: function() {
 }.observes('*sortedColumn.sortState'),
 
 
+
+
+searchDeed: function() {
+	var query;
+
+	query = Valhalla.mainPage.getPath('mainPane.topView.searchView').value;Valhalla.mainPage.getPath('mainPane.topView.searchView').value
+	var results = SC.Query.local(Valhalla.Deeds, 'text CONTAINS {value}', { value: query });
+	
+	this.set('content', Valhalla.store.find(results));
+	},
+
 }) ;
 ; if ((typeof SC !== 'undefined') && SC && SC.scriptDidLoad) SC.scriptDidLoad('valhalla');

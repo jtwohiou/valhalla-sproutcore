@@ -13,7 +13,7 @@
 
 sc_require('models/deed');
 Valhalla.DEEDS_QUERY = SC.Query.local(Valhalla.Deed, {
-  //orderBy: 'performed_at,speaker'
+  orderBy: 'performed_at'
 });
 
 Valhalla.DeedDataSource = SC.DataSource.extend(
@@ -48,7 +48,17 @@ didFetchDeeds: function(response, store, query) {
   // ..........................................................
   // RECORD SUPPORT
   // 
-  
+searchRecords: function(store, query) {
+ 
+  if (query === Valhalla.DEEDS_QUERY) {
+    SC.Request.getUrl('/deeds/search').header({'Accept': 'application/json'}).json()
+      .notify(this, 'didFetchDeeds', store, query)
+      .send();
+    return YES;
+  }
+ 
+  return NO;
+},
   retrieveRecord: function(store, storeKey) {
     
     // TODO: Add handlers to retrieve an individual record's contents
